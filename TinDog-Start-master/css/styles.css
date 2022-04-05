@@ -47,15 +47,22 @@ p{
     margin: 5% 3% 5% 0;
 }
 /* Title Image */
-.title-image{
+.title-image {
     width: 60%;
-}
-.rotated{
     transform: rotate(25deg);
-}
+    position: absolute;
+    left: 20%;
+    margin-bottom: -50%;
+  }
+  .title-image-container {
+    position: relative;
+  }
+
 /* Features Section */
 #features{
     padding: 7% 15%;
+    background-color: #fff;
+    position: relative;
 }
 .feature-box{
     text-align: center;
@@ -88,4 +95,33 @@ p{
 .press-logo{
     width: 15%;
     margin: 20px 20px 50px;
+}
+/* pricing-section */
+#pricing{
+    padding: 100px;
+    text-align: center;
+}
+.card-pading{
+    padding: 3% 2%;
+}
+#cta{
+    height: 200px;
+    background-color: #ff4c68;
+    color: #fff;
+    text-align: center;
+}
+#footer{
+    text-align: center;
+}
+
+@media (max-width: 1080px){
+    #title{
+        text-align: center;
+    }
+    .title-image{
+        position: static;
+        transform: rotate(0);
+        margin-bottom: auto;
+        width: 40%;
+    }
 }

@@ -105,13 +105,22 @@ p{
     padding: 3% 2%;
 }
 #cta{
-    height: 200px;
     background-color: #ff4c68;
     color: #fff;
     text-align: center;
+    padding: 7% 15%;
+}
+.cta-heading{
+    font-family: "Montserrat-Black";
+    font-size: 3rem;
+    line-height: 1.5;
 }
 #footer{
+    padding: 7% 15%;
     text-align: center;
+}
+.social-icon{
+    margin: 20px 10px;
 }
 
 @media (max-width: 1080px){

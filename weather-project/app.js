@@ -23,6 +23,15 @@ app.post("/", function(req,res){
             <img src="${imageUrl}"/>
             <p>Temprature in ${query} right now is ${temp} kalvin</p>`
             res.send(output);
+
+            // static async getAll(req, res) {
+            //     try {
+            //       const users = await userModel.find();
+            //       res.status(200).json(users);
+            //     } catch (err) {
+            //       res.status(404).json({ message: err.message });
+            //     }
+            //   }
         });
         
     });

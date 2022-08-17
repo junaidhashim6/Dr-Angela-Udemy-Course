@@ -5,8 +5,23 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Todolist</title>
+    <link rel="stylesheet" href="css/styles.css">
 </head>
 <body>
-    <h1>Today is <%= currentDay %> </h1>
+    <div class="box" id="heading">
+        <h1> <%= currentDay %> </h1>
+    </div>
+    <div class="box">
+        <% for (let i = 0; i<newListItems.length ; i++){ %>
+            <div class="item">
+                <input type="checkbox">
+                <p> <%= newListItems[i] %> </p>
+            </div>
+       <% } %>
+       <form action="/" method="post" class="item">
+        <input type="text" name="newItem" placeholder="New Item" autocomplete="off">
+        <button type="submit">+</button>
+    </form>
+    </div>
 </body>
 </html>

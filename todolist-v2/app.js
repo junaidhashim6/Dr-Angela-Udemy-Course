@@ -11,7 +11,7 @@ app.set('view engine', 'ejs');
 app.use(bodyParser.urlencoded({extended: true}));
 app.use(express.static("public"));
 
-mongoose.connect("mongodb://localhost:27017/todolistDB",{useNewUrlParser: true});
+mongoose.connect("mongodb+srv://admin:<pwd>@<mongo_uri>?retryWrites=true&w=majority/todolistDB",{useNewUrlParser: true});
 const itemsSchema ={
   name: String
 };
@@ -81,8 +81,11 @@ app.post("/", function(req, res){
   const item = new Item({
     name: itemName
   });
-  item.save()
-  res.redirect("/");
+  
+    item.save()
+    res.redirect("/");
+  
+  
 });
 app.post("/delete", function(req,res){
   const checkedItem= req.body.checkbox;

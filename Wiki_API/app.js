@@ -44,6 +44,14 @@ app.post("/articles",function(req,res){
     }
   });
 });
+app.deleteMany("/articles",function(err){
+  if(!err){
+    res.send("Deleted all the articles")
+  }
+  else{
+    res.send(err)
+  }
+});
 //TODO
 
 app.listen(3000, function() {

@@ -30,6 +30,20 @@ app.get("/articles",function(req,res){
     }
   });
 });
+app.post("/articles",function(req,res){
+  const newArtticle = new Article({
+    title: req.body.title,
+    content:req.body.content
+  });
+  newArtticle.save(function(err){
+    if(!err){
+      res.send("Succesfully added new article")
+    }
+    else{
+      res.send(err)
+    }
+  });
+});
 //TODO
 
 app.listen(3000, function() {

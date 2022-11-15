@@ -20,9 +20,11 @@ const articleSchema = {
     content: String
 }
 const Article = mongoose.model("Article", articleSchema);
-
+app.get("/",function(req,res){
+  res.send("<h1>Welcome to Wiki API</h1>");
+});
 app.route("/articles")
-//get sll the articles
+//get all the articles
 .get(function(req,res){
   Article.find(function(err,foundArticles){
     if(!err){
@@ -57,6 +59,33 @@ app.route("/articles")
     res.send(err)
   }
 });
+//find a particular article
+ app.route("/articles/:articleTitle")
+ .get(function(req,res){
+  Article.findOne({title:req.params.articleTitle},function(err,foundArticle){
+    if(foundArticle){
+      res.send(foundArticle)
+    }
+    else{
+      res.send("No article was found with this title")
+    }
+  });
+ })
+ .put(function(req,res){
+  Article.update(
+    {title:req.params.articleTitle},
+    {title:req.body.title, content:req.body.content},
+    {overwrite:true},
+    function(err){
+      if(!err){
+        res.send("Succesfully updated the article!");
+      }else{
+        res.send(err);
+      }
+    }
+  )
+ });
+ 
 //TODO
 
 app.listen(3000, function() {

@@ -1,16 +1,12 @@
+import React from 'react';
 import './App.css';
-const user = {
-  name: "junaid",
-  desig:  "lead",
-  age:26
-};
+import MyButton from './components/button';
 function App() {
   return (
     <div className="App">
       <header className="App-header">
-        <p>Name of the user is {user.name}</p>
-        <p>He is {user.age} years old</p>
-        <p>He works as {user.desig}</p>
+      <h2>Welcom to My App</h2>
+      <MyButton />
       </header>
     </div>
   );

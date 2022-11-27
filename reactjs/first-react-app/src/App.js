@@ -4,6 +4,7 @@ import MyButton from './components/button';
 import  About  from './components/about';
 import AdminPanel from './components/admin';
 import LoginForm from './components/user';
+import List from './components/list';
 const isLoggedIn =false;
 function App() {
   return (
@@ -19,6 +20,7 @@ function App() {
       <LoginForm />
   )}
      </div>
+     <List />
       </header>
     </div>
   );

@@ -46,9 +46,18 @@ Item.find({},function(err,foundItems){
     res.render("list", {listTitle: "Today", newListItems:foundItems});
   }
 })
+});
 
-  
-
+app.post("/delete", function(req,res) {
+  const itemId = req.body.checkbox;
+  Item.findByIdAndRemove(itemId,function(err){
+    if(!err){
+      console.log("Deleted the item successfully")
+      res.redirect("/");
+    }else{
+      console.log(err);
+    }
+  });
 });
 
 app.post("/", function(req, res){

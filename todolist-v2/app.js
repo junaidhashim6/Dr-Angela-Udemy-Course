@@ -11,7 +11,7 @@ app.set('view engine', 'ejs');
 app.use(bodyParser.urlencoded({extended: true}));
 app.use(express.static("public"));
 
-mongoose.connect("mongodb://127.0.0.1:27017/todoDB", {useNewUrlParser:true})
+mongoose.connect("mongodb+srv://admin-junaid:jonishah786@cluster0.0fpslsv.mongodb.net/todoDB", {useNewUrlParser:true})
 const itemsSchema = {
   name: String
 };
@@ -75,7 +75,7 @@ app.post("/delete", function(req,res) {
   const listName =req.body.listName;
  
   if(listName === "Today"){
-    Item.findByIdAndRemove(itemId,function(err){
+    Item.findByIdAndRemove(checkedItemId,function(err){
       if(!err){
         res.redirect("/");
       }else{

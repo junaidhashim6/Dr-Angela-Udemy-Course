@@ -27,7 +27,11 @@ const item3 =new Item({
 });
 const defaultItems = [item1, item2, item3];
 
-
+const listSchema = {
+  name : String,
+  items: [itemsSchema]
+};
+const List = mongoose.model("List",listSchema);
 
 app.get("/", function(req, res) {
 
@@ -47,12 +51,29 @@ Item.find({},function(err,foundItems){
   }
 })
 });
+app.get("/:customListName",function(req,res){
+  const customListName = req.params.customListName;
+  List.findOne({name:customListName},function(err,foundlist){
+    if(!err){
+      if(!foundlist){
+        const list = new List({
+          name: customListName,
+          items:defaultItems
+        });
+        list.save();
+        res.redirect("/");
+      }else{
+        res.render("list",{listTitle:foundlist.name, newListItems:foundlist.items});
+      }
+    }
+  })
+ 
+})
 
 app.post("/delete", function(req,res) {
   const itemId = req.body.checkbox;
   Item.findByIdAndRemove(itemId,function(err){
     if(!err){
-      console.log("Deleted the item successfully")
       res.redirect("/");
     }else{
       console.log(err);
@@ -71,13 +92,6 @@ app.post("/", function(req, res){
   res.redirect("/");
 });
 
-app.get("/work", function(req,res){
-  res.render("list", {listTitle: "Work List", newListItems: workItems});
-});
-
-app.get("/about", function(req, res){
-  res.render("about");
-});
 
 app.listen(3000, function() {
   console.log("Server started on port 3000");

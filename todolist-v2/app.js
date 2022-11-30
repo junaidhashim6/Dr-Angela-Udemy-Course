@@ -70,14 +70,24 @@ app.get("/:customListName",function(req,res){
 })
 
 app.post("/delete", function(req,res) {
-  const itemId = req.body.checkbox;
-  Item.findByIdAndRemove(itemId,function(err){
-    if(!err){
-      res.redirect("/");
-    }else{
-      console.log(err);
-    }
-  });
+  const checkedItemId = req.body.checkbox;
+  const listName =req.body.listName;
+ 
+  if(listName === "Today"){
+    Item.findByIdAndRemove(itemId,function(err){
+      if(!err){
+        res.redirect("/");
+      }else{
+        console.log(err);
+      }
+    });
+  }else{
+    List.findOneAndUpdate({name:listName},{$pull: {items: {_id:checkedItemId}}}, function(err,foundList){
+      if(!err){
+        res.redirect("/"+ listName);
+      }
+    });
+  }
 });
 
 app.post("/", function(req, res){

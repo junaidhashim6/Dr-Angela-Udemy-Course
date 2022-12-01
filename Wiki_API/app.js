@@ -66,14 +66,14 @@ app.route("/articles")
   }
 });
 //find a particular article
- app.route("/articles/:articleTitle")
+ app.route("/articles/:_id")
  .get(function(req,res){
-  Article.findOne({title:req.params.articleTitle},function(err,foundArticle){
+  Article.findOne({id:req.params._id},function(err,foundArticle){
     if(foundArticle){
       res.send(foundArticle)
     }
     else{
-      res.send("No article was found with this title")
+      res.send("No article was found with this id")
     }
   });
  })

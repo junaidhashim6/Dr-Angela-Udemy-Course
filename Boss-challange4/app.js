@@ -21,7 +21,7 @@ app.use(express.static("public"));
 const postSchema ={
   title: String,
   content: String
-}
+};
 const Post =mongoose.model("Post",postSchema);
 
 app.post("/compose",function(req,res){
@@ -29,8 +29,12 @@ app.post("/compose",function(req,res){
     title: req.body.postTitle,
     content:req.body.postBody
   });
-  post.save();
-  res.redirect("/");
+  post.save(function(err){
+    if(!err){
+      res.redirect("/");
+    }
+  });
+  
 })
 
 
@@ -70,18 +74,19 @@ app.post("/compose", function(req, res){
 
 });
 
-app.get("/posts/:postName", function(req, res){
+app.get("/posts/:postId", function(req, res){
   const requestedTitle = _.lowerCase(req.params.postName);
+  const requestedPostId = req.params.postId;
+  Post.findOne({_id: requestedPostId}, function(err, post){
 
-  posts.forEach(function(post){
-    const storedTitle = _.lowerCase(post.title);
-
-    if (storedTitle === requestedTitle) {
-      res.render("post", {
-        title: post.title,
-        content: post.content
-      });
-    }
+    res.render("post", {
+ 
+      title: post.title,
+ 
+      content: post.content
+ 
+    });
+ 
   });
 
 });

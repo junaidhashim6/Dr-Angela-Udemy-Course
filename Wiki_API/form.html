@@ -16,12 +16,25 @@
     <header>
       <div class="p-5 text-center bg-light">
         <h1 class="mb-3">Welcome To Wiki API</h1>
-        <h4 class="mb-3">Here you can create and delete you articles</h4><br>
     </header>
-    <div class="p-4 text-center">
-      <a class="btn btn-primary" href="/articles" role="button" name="fetch">Fetch Articles</a>
-    <a class="btn btn-success" href="/form" role="button">Create Article</a>
-    </div>
+    <form style="margin-left: 50px; margin-right: 50px;" action="/articles" method="post" >
+
+        <div class="form-group"> <!-- Name field -->
+            <label class="control-label " for="name">Title</label>
+            <input class="form-control" id="title" name="title" type="text"/>
+        </div>
+        
+        <div class="form-group"> <!-- Message field -->
+            <label class="control-label " for="message">Content</label>
+            <textarea class="form-control" cols="40" id="message" name="content" rows="10"></textarea>
+            <br>
+        </div>
+        
+        <div class="form-group">
+            <button class="btn btn-success " name="submit" type="submit">Submit</button>
+        </div>
+        
+    </form>								
     <script
       src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js"
       integrity="sha384-kenU1KFdBIe4zVF0s0G1M5b4hcpxyD9F7jL+jjXkk+Q2h455rYXK/7HAuoJl+0I4"

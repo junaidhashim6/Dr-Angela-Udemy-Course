@@ -14,14 +14,20 @@ app.use(bodyParser.urlencoded({
 }));
 app.use(express.static("public"));
 
-mongoose.connect("mongodb://localhost:27017/wikiDB",{useNewUrlParser:true});
+mongoose.connect("mongodb://127.0.0.1:27017/wikiDB",{useNewUrlParser:true});
 const articleSchema = {
     title: String,
     content: String
 }
 const Article = mongoose.model("Article", articleSchema);
 app.get("/",function(req,res){
-  res.send("<h1>Welcome to Wiki API</h1>");
+  res.sendFile(__dirname+'/index.html');
+});
+app.get("/form",function(req,res){
+  res.sendFile(__dirname+'/form.html')
+});
+app.get("/delete",function(res){
+  res.sendFile(__dirname+'/delete.html')
 });
 app.route("/articles")
 //get all the articles
@@ -43,7 +49,7 @@ app.route("/articles")
   });
   newArtticle.save(function(err){
     if(!err){
-      res.send("Succesfully added new article")
+      res.redirect("/articles");
     }
     else{
       res.send(err)

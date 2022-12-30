@@ -51,7 +51,8 @@ app
     });
     newArtticle.save(function (err) {
       if (!err) {
-        res.send("Article saved succesfully");
+        // res.send("Article saved succesfully");
+        res.send("Article added succefully")
       } else {
         res.send(err);
       }
@@ -108,7 +109,6 @@ app
         }
       }
     );
-    
   })
   .delete(function (req, res) {
     Article.deleteOne({ title: req.params.articleTitle }, function (err) {
